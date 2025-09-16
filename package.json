@@ -1,0 +1,12 @@
+{
+  "name": "emmef-backend",
+  "version": "1.0.0",
+  "main": "api/images.js",
+  "type": "module",
+  "scripts": {
+    "start": "vercel dev"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
+}
