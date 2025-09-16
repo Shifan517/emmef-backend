@@ -2,9 +2,17 @@ import fetch from "node-fetch";
 
 export default async function handler(req, res) {
   try {
+    console.log("CLOUDINARY_CLOUD_NAME:", process.env.CLOUDINARY_CLOUD_NAME);
+    console.log("CLOUDINARY_API_KEY:", process.env.CLOUDINARY_API_KEY);
+    console.log("CLOUDINARY_API_SECRET:", process.env.CLOUDINARY_API_SECRET ? "Loaded ✅" : "Missing ❌");
+
     const cloudName = process.env.CLOUDINARY_CLOUD_NAME;
     const apiKey = process.env.CLOUDINARY_API_KEY;
     const apiSecret = process.env.CLOUDINARY_API_SECRET;
+
+    if (!cloudName || !apiKey || !apiSecret) {
+      return res.status(500).json({ error: "Missing Cloudinary env variables" });
+    }
 
     const auth = Buffer.from(apiKey + ":" + apiSecret).toString("base64");
 
